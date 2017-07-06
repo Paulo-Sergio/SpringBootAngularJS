@@ -1,7 +1,10 @@
 package br.com.fabricaprogramador.ws.model;
 
+@Entity
 public class Cliente {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 
