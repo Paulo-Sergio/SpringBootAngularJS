@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Revisão JS 3</title>
+</head>
+
+<body>
+
+    <div id="saida"></div>
+
+    <script>
+        function Pessoa(nome, idade) {
+            this.nome = nome;
+            this.idade = idade;
+        }
+
+        Pessoa.prototype.dizerOi = function () {
+            alert('OI!!!');
+        }
+
+        var p1 = new Pessoa("Jão", 35);
+        p1.dizerOi();
+
+        console.log(p1.nome);
+        console.log(p1.idade);
+    </script>
+</body>
+
+</html>

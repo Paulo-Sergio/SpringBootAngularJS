@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Revisão JS 2</title>
+</head>
+
+<body>
+
+    <div id="saida"></div>
+
+    <script>
+        var pessoa = {
+            nome: 'Jão',
+            idade: 35,
+            dizerAlgo: function (mensagem, callback) {
+                callback(mensagem);
+            }
+        }
+        console.log(pessoa.nome);
+        console.log(pessoa.idade);
+        pessoa.dizerAlgo("Olá pelo parametro Callback Div!", function (msg) { // DIV
+            var divSaida = document.getElementById('saida');
+            divSaida.innerHTML = msg;
+        });
+        pessoa.dizerAlgo("Olá pelo parametro CallBack!", function (msg) { // alert
+            alert(msg);
+        });
+        pessoa.dizerAlgo("Olá pelo parametro Callback Console!", function (msg) { // console
+            console.log(msg);
+        });
+    </script>
+</body>
+
+</html>
