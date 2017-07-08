@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 </head>
 
@@ -14,18 +14,19 @@
     <div id="display"></div>
 
     <script type="text/javascript">
+        //<![CDATA[
         function carregarDados() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
                     document.getElementById("display").innerHTML = xhttp.responseText;
-                    alert('chegou');
                 }
             };
 
             xhttp.open("GET", "http://localhost:8080/clientes", true);
             xhttp.send();
         }
+        //]]>
     </script>
 </body>
 
