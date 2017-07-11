@@ -1,4 +1,5 @@
 <div ng-controller="clienteController">
+	<h3>Pagina de Clientes</h3>
 	<p>Oi, {{cliente.nome}}</p>
 	
 	<input type="text" ng-model="cliente.nome" />
@@ -9,5 +10,6 @@
 		{{cli.id + ' - ' + cli.nome}} 
 		<input type="button" value="excluir" ng-click="excluirCliente(cli)"/>
 		<input type="button" value="alterar" ng-click="alterarCliente(cli)"/>
+		<a href="clientes/{{cli.id}}">Detalhar</a>
 	</div>
 </div>

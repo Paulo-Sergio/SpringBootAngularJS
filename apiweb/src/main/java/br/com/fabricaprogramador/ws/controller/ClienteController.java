@@ -20,7 +20,7 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
-	
+
 	// End Points
 	@RequestMapping(method = RequestMethod.POST, value = "/clientes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente) {
@@ -34,6 +34,13 @@ public class ClienteController {
 		Collection<Cliente> clientes = clienteService.buscarTodos();
 
 		return new ResponseEntity<Collection<Cliente>>(clientes, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/clientes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Cliente> buscarClientePorId(@PathVariable Integer id) {
+		Cliente cliente = clienteService.buscarPorId(id);
+
+		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/clientes", consumes = MediaType.APPLICATION_JSON_VALUE)

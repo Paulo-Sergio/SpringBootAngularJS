@@ -1,5 +1,5 @@
 // criando os controllers
-app.controller('estadoController', function($scope, $http) {
+app.controller('estadoController', function($scope) {
 
 	
 
