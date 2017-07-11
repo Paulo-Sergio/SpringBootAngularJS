@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html ng-app="appCliente">
+<html ng-app="app">
 <head>
+<base href="/"/>
 <meta charset="UTF-8" />
 <title>Clientes</title>
 </head>
 
 <body>
 
+	<h3>TEMPLATE</h3>
 	
+	<a href="/#/clientes">Clientes</a>
+	
+	<div ng-view="ng-view"></div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
 	<script src="./js/app.js"></script>
 	<script src="./js/controller/cliente-controller.js"></script>
 </body>
