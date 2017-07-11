@@ -15,21 +15,31 @@ app.controller('clienteController', function($scope, $http) {
 	};
 
 	$scope.salvarCliente = function() {
-		if($scope.cliente.id == null || $scope.cliente.id == undefined) {
-			$http.post('http://localhost:8080/clientes/', $scope.cliente).then(function(response) {
-				$scope.clientes.push(response.data);
-				$scope.cancelar();
-			}, function(response) {
-				console.log(response.data);
-			});
+		if($scope.frmCliente.$valid){
+			
+			if($scope.cliente.id == null || $scope.cliente.id == undefined) {
+				$http.post('http://localhost:8080/clientes/', $scope.cliente).then(function(response) {
+					$scope.clientes.push(response.data);
+					$scope.cancelar();
+				}, function(response) {
+					console.log(response.data);
+				});
+			} else {
+				$http.put('http://localhost:8080/clientes/', $scope.cliente).then(function(response) {
+					$scope.carregarClientes();
+					$scope.cancelar();
+				}, function(response){
+					console.log(response);
+				});
+			}
+			
+			// settar pritine para não validar o form apos salvar um cliente
+			$scope.frmCliente.$setPristine(true);
+			
 		} else {
-			$http.put('http://localhost:8080/clientes/', $scope.cliente).then(function(response) {
-				$scope.carregarClientes();
-				$scope.cancelar();
-			}, function(response){
-				console.log(response);
-			});
+			window.alert("Dados invalidos!");
 		}
+		
 		
 	};
 	
