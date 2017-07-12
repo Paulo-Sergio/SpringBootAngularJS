@@ -3,7 +3,17 @@ app.controller('clienteController', function($scope, $http) {
 
 	$scope.clientes = [];
 	$scope.cliente = {};
+	$scope.estados = [];
+	$scope.estado = {};
 
+	$scope.carregarEstados = function() {
+		$http.get('http://localhost:8080/estados/').then(function(response) {
+			$scope.estados = response.data;
+		}, function(err) {
+			console.log(err);
+		});
+	};
+	
 	$scope.carregarClientes = function() {
 		$http.get('http://localhost:8080/clientes/').then(function(response) {
 			$scope.clientes = response.data;
@@ -61,5 +71,6 @@ app.controller('clienteController', function($scope, $http) {
 	};
 
 	$scope.carregarClientes();
+	$scope.carregarEstados();
 
 });
