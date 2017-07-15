@@ -15,6 +15,10 @@ public class UsuarioService {
 	public Usuario cadastrar(Usuario usuario) {
 		return this.usuarioRepository.save(usuario);
 	}
+	
+	public Usuario buscarPorNome(String nome){
+		return this.usuarioRepository.buscarPorNome(nome);
+	}
 
 	
 }
