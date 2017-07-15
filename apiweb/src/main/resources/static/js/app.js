@@ -24,6 +24,11 @@ app.config(function($routeProvider, $locationProvider) {
 			controller: 'estadoController'
 		})
 		
+		.when('/login', {
+			templateUrl: 'view/login.html',
+			controller: 'loginController'
+		})
+		
 		.otherwise({
 			rediretTo: '/'
 		});
