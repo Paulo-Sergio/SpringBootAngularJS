@@ -16,6 +16,7 @@ import br.com.fabricaprogramador.ws.model.Cliente;
 import br.com.fabricaprogramador.ws.service.ClienteService;
 
 @RestController
+@RequestMapping(value = "/admin")
 public class ClienteController {
 
 	@Autowired
