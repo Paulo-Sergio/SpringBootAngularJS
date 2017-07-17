@@ -19,7 +19,7 @@ app.controller('clienteController', function($scope, $http) {
 		token = localStorage.getItem("userToken");
 		
 		// colocando no header da request http o token Authorization
-		$http.defaults.headers.common.Authorization = 'Bearer ' + token;
+		//$http.defaults.headers.common.Authorization = 'Bearer ' + token;
 		
 		$http.get('http://localhost:8080/admin/clientes/').then(function(response) {
 			$scope.clientes = response.data;

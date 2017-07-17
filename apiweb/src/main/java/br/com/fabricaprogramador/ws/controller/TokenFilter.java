@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -23,7 +24,7 @@ public class TokenFilter extends GenericFilterBean {
 		String header = req.getHeader("Authorization");
 
 		if (header == null || !header.startsWith("Bearer ")) {
-			throw new ServletException("Token inexistente");
+			((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token inexistente");
 		}
 
 		// estraindo o valor do token sem o 'Bearer '
@@ -31,9 +32,9 @@ public class TokenFilter extends GenericFilterBean {
 
 		try {
 			// verifica se o token é valido
-			Jwts.parser().setSigningKey("banana").parseClaimsJws(token).getBody();
+			Jwts.parser().setSigningKey("token").parseClaimsJws(token).getBody();
 		} catch (SignatureException e) {
-			throw new ServletException("Token invalido");
+			((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token invalido");
 		}
 		
 		chain.doFilter(request, response);
