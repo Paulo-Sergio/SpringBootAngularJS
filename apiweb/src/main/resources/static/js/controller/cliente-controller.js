@@ -15,7 +15,13 @@ app.controller('clienteController', function($scope, $http) {
 	};
 	
 	$scope.carregarClientes = function() {
-		$http.get('http://localhost:8080/clientes/').then(function(response) {
+		// pegando userToken do localStorage
+		token = localStorage.getItem("userToken");
+		
+		// colocando no header da request http o token Authorization
+		$http.defaults.headers.common.Authorization = 'Bearer ' + token;
+		
+		$http.get('http://localhost:8080/admin/clientes/').then(function(response) {
 			$scope.clientes = response.data;
 			console.log("Response " + response.data);
 			console.log("Status " + response.status);
@@ -28,14 +34,14 @@ app.controller('clienteController', function($scope, $http) {
 		if($scope.frmCliente.$valid){
 			
 			if($scope.cliente.id == null || $scope.cliente.id == undefined) {
-				$http.post('http://localhost:8080/clientes/', $scope.cliente).then(function(response) {
+				$http.post('http://localhost:8080/admin/clientes/', $scope.cliente).then(function(response) {
 					$scope.clientes.push(response.data);
 					$scope.cancelar();
 				}, function(response) {
 					console.log(response.data);
 				});
 			} else {
-				$http.put('http://localhost:8080/clientes/', $scope.cliente).then(function(response) {
+				$http.put('http://localhost:8080/admin/clientes/', $scope.cliente).then(function(response) {
 					$scope.carregarClientes();
 					$scope.cancelar();
 				}, function(response){
@@ -54,7 +60,7 @@ app.controller('clienteController', function($scope, $http) {
 	};
 	
 	$scope.excluirCliente = function(cliente) {
-		$http.delete('http://localhost:8080/clientes/' + cliente.id).then(function(response) {
+		$http.delete('http://localhost:8080/admin/clientes/' + cliente.id).then(function(response) {
 			var posicao = $scope.clientes.indexOf(cliente);
 			$scope.clientes.splice(posicao, 1);
 		}, function (response){
