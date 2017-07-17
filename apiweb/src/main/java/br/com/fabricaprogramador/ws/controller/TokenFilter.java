@@ -23,8 +23,9 @@ public class TokenFilter extends GenericFilterBean {
 		// cabeçalho especifico da JWT que vem na request do 'client'
 		String header = req.getHeader("Authorization");
 
-		if (header == null || !header.startsWith("Bearer ")) {
+		if (header == null || header.contains("null") || !header.startsWith("Bearer ")) {
 			((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token inexistente");
+			return;
 		}
 
 		// estraindo o valor do token sem o 'Bearer '
@@ -35,6 +36,7 @@ public class TokenFilter extends GenericFilterBean {
 			Jwts.parser().setSigningKey("token").parseClaimsJws(token).getBody();
 		} catch (SignatureException e) {
 			((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token invalido");
+			return;
 		}
 		
 		chain.doFilter(request, response);
